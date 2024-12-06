@@ -40,5 +40,32 @@
             define('BD_URL', 'br_bd_dev');
             echo BD_URL;
         ?>
+
+        <?php
+            $cartao_loja = true;
+            $valor_compra = 100;
+
+            $valor_frete = 50;
+            $desconto_frete = false;
+
+            if($cartao_loja && $valor_compra >= 100) {
+                $valor_frete = 0;
+                $desconto_frete = true;
+            }
+        ?>
+        <h2>Detalhes do pedido</h2>
+        <p>Possui cartão da loja? <?php if($cartao_loja){
+            echo 'Sim<br/>';
+            } else {
+                echo 'Não<br/>';
+            } ?></p>
+
+        <p>Valor da compra: <?php echo $valor_compra ?></p>
+        <p>Recebeu desconto no frete? <?php if($desconto_frete == true){
+                echo 'Sim<br/>';
+            } else {
+                echo 'Não<br/>';
+            } ?></p>
+        <p>Valor do frete: <?php echo $valor_frete ?></p>
     </body>
 </html>
