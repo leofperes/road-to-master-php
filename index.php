@@ -48,24 +48,18 @@
             $valor_frete = 50;
             $desconto_frete = false;
 
-            if($cartao_loja && $valor_compra >= 100) {
-                $valor_frete = 0;
-                $desconto_frete = true;
-            }
+            $valor_frete_aux = $cartao_loja && $valor_compra >= 400 ? 0 : ($cartao_loja && $valor_compra >= 300 ? 10 : ($cartao_loja && $valor_compra >= 100 ? 25 : $valor_frete));
+            $desconto_frete = $valor_frete != $valor_frete_aux ? true : false
         ?>
         <h2>Detalhes do pedido</h2>
-        <p>Possui cartão da loja? <?php if($cartao_loja){
-            echo 'Sim<br/>';
-            } else {
-                echo 'Não<br/>';
-            } ?></p>
+        <p>Possui cartão da loja? <?= $cartao_loja ? 'Sim' : 'Não'; ?>
 
         <p>Valor da compra: <?php echo $valor_compra ?></p>
-        <p>Recebeu desconto no frete? <?php if($desconto_frete == true){
-                echo 'Sim<br/>';
-            } else {
-                echo 'Não<br/>';
-            } ?></p>
+        <p>Recebeu desconto no frete?
+            <?php
+                $teste = $desconto_frete ? 'Sim' : 'Não';
+                echo $teste;
+            ?></p>
         <p>Valor do frete: <?php echo $valor_frete ?></p>
     </body>
 </html>
